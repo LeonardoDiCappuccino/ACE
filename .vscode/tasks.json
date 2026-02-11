@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: build (launch target)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${command:cmake.buildDirectory}",
+                "--target",
+                "${command:cmake.launchTargetName}",
+                "--config",
+                "${command:cmake.buildType}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "never",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "pyocd",
+            "args": [
+                "flash",
+                "--target",
+                "stm32f042k6",
+                "${command:cmake.launchTargetPath}"
+            ],
+            "dependsOn": [
+                "CMake: build (launch target)"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

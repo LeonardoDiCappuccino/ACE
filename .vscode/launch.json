@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (OpenOCD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/stm32f0x.cfg"
+            ],
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "device": "stm32f042k6",
+            "preLaunchTask": "CMake: build (launch target)",
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none"        
+        },
+        {
+            "name": "Debug (pyOCD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "pyocd",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "device": "stm32f042k6",
+            "preLaunchTask": "CMake: build (launch target)",
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "raw"
+        }
+    ]
+}
