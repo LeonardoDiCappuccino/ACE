@@ -25,7 +25,7 @@ add_library(stm32f042x6_hal_driver STATIC "${stm32f042x6_hal_driver_src}")
 
 target_include_directories(stm32f042x6_hal_driver PUBLIC 
     "stm32f0xx-hal-driver/Inc/"
-    "${CMAKE_SOURCE_DIR}/src/"    # Include hal config
+    "${CMAKE_SOURCE_DIR}/src/setup/"    # Include hal config
 )
 
 target_link_libraries(stm32f042x6_hal_driver PUBLIC cmsis_device_stm32f042x6)
