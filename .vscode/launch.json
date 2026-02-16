@@ -2,21 +2,27 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug (OpenOCD)",
+            "name": "Debug",
             "type": "cortex-debug",
-            "request": "launch",
-            "servertype": "openocd",
-            "configFiles": [
-                "interface/cmsis-dap.cfg",
-                "target/stm32f0x.cfg"
-            ],
+            "request": "attach",
             "cwd": "${workspaceRoot}",
             "executable": "${command:cmake.launchTargetPath}",
-            "device": "stm32f042k6",
-            "preLaunchTask": "CMake: build (launch target)",
+            "preLaunchTask": "Debug Server",
+            "servertype": "external",
+            "gdbTarget": "localhost:3333",
+            "overrideAttachCommands": [
+                "break main",
+                "load",
+                // "monitor reset halt"
+            ],
+                "postStartSessionCommands": [
+                "continue",
+                "set print pretty on",
+            ],
             "runToEntryPoint": "main",
-            "showDevDebugOutput": "none"        
+            "showDevDebugOutput": "none"
         },
+        // Some timeout error (won't even start)
         {
             "name": "Debug (pyOCD)",
             "type": "cortex-debug",
@@ -25,9 +31,8 @@
             "cwd": "${workspaceRoot}",
             "executable": "${command:cmake.launchTargetPath}",
             "device": "stm32f042k6",
-            "preLaunchTask": "CMake: build (launch target)",
             "runToEntryPoint": "main",
-            "showDevDebugOutput": "raw"
+            "showDevDebugOutput": "none"
         }
     ]
 }
