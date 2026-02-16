@@ -6,3 +6,7 @@ A project structure for Arm Cortex Embedded programming
 
 - CMake
 - GNU Arm Embedded Toolchain
+
+## Not finished
+
+Currently STM32F042K6 is preconfigured
